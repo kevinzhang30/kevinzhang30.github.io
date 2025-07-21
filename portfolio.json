@@ -1,9 +1,9 @@
 {
-  "name": "Kevin Zhang",
+  "name": "Your Name",
   "label": "Optional Label",
   "image_path": "img/default-image.png",
   "contact": {
-    "email": "k73zhang@Suwaterloo.ca",
+    "email": "FirstLast@Sample.com",
     "phone": "123-456-7890",
     "location": "City, State, Country"
   },
