@@ -4,10 +4,9 @@
       "id": 1,
       "title": "ClinicMS",
       "description": "A full stack healthcare management web application using Spring Boot, JWT, Maven, React, JavaScript, and Axios. Features comprehensive patient management, appointment scheduling, and healthcare provider workflows.",
-      "image": "https://via.placeholder.com/400x250/1976d2/ffffff?text=ClinicMS",
+      "image": "/images/logo192.png",
       "technologies": ["Spring Boot", "JWT", "Maven", "React", "JavaScript", "Axios"],
-      "githubUrl": "https://github.com/kevin/clinicms",
-      "liveUrl": "https://clinicms-demo.com",
+      "githubUrl": "https://github.com/kevinzhang30/clinicms",
       "category": "web"
     },
     {
@@ -16,7 +15,7 @@
       "description": "An Android app that allows you to easily manage expenses on vacation using Kotlin, Gradle, Firebase, and Google Maps API. Features expense tracking, location-based spending insights, and travel budget management.",
       "image": "https://via.placeholder.com/400x250/4caf50/ffffff?text=TripWise",
       "technologies": ["Kotlin", "Gradle", "Firebase", "Google Maps API", "Android"],
-      "githubUrl": "https://github.com/kevin/tripwise",
+      "githubUrl": "https://github.com/kevinzhang30/tripwise",
       "category": "mobile"
     },
     {
@@ -25,7 +24,7 @@
       "description": "A command-line dungeon crawler game highlighting principles of object-oriented programming using C++. Features procedural generation, combat mechanics, and demonstrates advanced OOP concepts like inheritance and polymorphism.",
       "image": "https://via.placeholder.com/400x250/ff9800/ffffff?text=CC3K",
       "technologies": ["C++", "Object-Oriented Programming", "Command Line", "Game Development"],
-      "githubUrl": "https://github.com/kevin/cc3k",
+      "githubUrl": "https://github.com/kevinzhang30/cc3k",
       "category": "game"
     }
   ],

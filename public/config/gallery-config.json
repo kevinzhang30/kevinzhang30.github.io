@@ -2,91 +2,114 @@
   "photos": [
     {
       "id": 1,
-      "title": "Sunset at the Beach",
-      "description": "Beautiful golden hour at Malibu Beach. The waves were perfect and the sky was painted with amazing colors.",
-      "imageUrl": "/images/logo192.png",
-      "location": "Malibu, CA",
-      "date": "2024-01-15",
-      "tags": ["sunset", "beach", "nature", "photography"],
-      "category": "nature"
-    },
-    {
-      "id": 2,
-      "title": "Mountain Hiking",
-      "description": "Reached the summit after 6 hours of hiking. The view was absolutely breathtaking and worth every step.",
-      "imageUrl": "/images/logo192.png",
-      "location": "Rocky Mountains, CO",
-      "date": "2024-01-10",
-      "tags": ["hiking", "mountains", "adventure", "nature"],
-      "category": "adventure"
-    },
-    {
-      "id": 3,
-      "title": "City Lights",
-      "description": "Night photography in downtown. The city never sleeps and the lights create such a magical atmosphere.",
-      "imageUrl": "/images/logo192.png",
-      "location": "Downtown, NY",
-      "date": "2024-01-08",
-      "tags": ["city", "night", "urban", "photography"],
+      "title": "Spider-Verse 67",
+      "description": "I just came to my senses.",
+      "imageUrl": "/images/spiderverse67.jpeg",
+      "location": "New York City, NY",
+      "date": "2025-08-22",
+      "tags": ["city", "nighttime"],
       "category": "urban"
     },
     {
+      "id": 2,
+      "title": "Banquet Speaker",
+      "description": "LSC 2024 Awards Banquet.",
+      "imageUrl": "/images/banquetspeaker.jpg",
+      "location": "Toronto, ON",
+      "date": "2024-10-14",
+      "tags": ["nighttime", "community"],
+      "category": "experience"
+    },
+    {
+      "id": 3,
+      "title": "Beach Soccer",
+      "description": "Soccer, mon.",
+      "imageUrl": "/images/soccer.jpg",
+      "location": "Fort Clarence Beach, Jamaica",
+      "date": "2024-01-04",
+      "tags": ["soccer", "nature", "beach"],
+      "category": "adventure"
+    },
+    {
+      "id": 3.5,
+      "title": "Me and the Chad",
+      "description": "On the podium with Chad Le Clos.",
+      "imageUrl": "/images/meandthechad.jpg",
+      "location": "Luxembourg City, Luxembourg",
+      "date": "2024-01-26",
+      "tags": ["swimming", "racing", "experience"],
+      "category": "experience"
+    },
+    {
       "id": 4,
-      "title": "Coffee Shop Vibes",
-      "description": "Cozy morning at my favorite local coffee shop. The perfect spot for people watching and getting work done.",
-      "imageUrl": "/images/logo192.png",
-      "location": "Local Coffee Shop",
-      "date": "2024-01-05",
-      "tags": ["coffee", "lifestyle", "local", "morning"],
-      "category": "lifestyle"
+      "title": "Biking + Don's",
+      "description": "Luxembourg is fire.",
+      "imageUrl": "/images/bikinghaul.jpg",
+      "location": "Luxembourg City, Luxembourg",
+      "date": "2024-01-28",
+      "tags": ["nature", "urban", "biking", "food"],
+      "category": "adventure"
+      
     },
     {
       "id": 5,
-      "title": "Street Art",
-      "description": "Amazing street art found while exploring the city. The creativity and talent of street artists always amazes me.",
-      "imageUrl": "/images/logo192.png",
-      "location": "Arts District, LA",
-      "date": "2024-01-03",
-      "tags": ["street art", "urban", "creativity", "culture"],
-      "category": "art"
+      
+      "title": "Behind the Blocks",
+      "description": "WJ 200 fly prelim.",
+      "imageUrl": "/images/worldjrbhb.jpg",
+      "location": "Netanya, Israel",
+      "date": "2023-09-09",
+      "tags": ["swimming", "racing", "national team"],
+      "category": "experience"
     },
     {
       "id": 6,
-      "title": "Garden Flowers",
-      "description": "Spring has arrived! These beautiful flowers are blooming in my backyard garden.",
-      "imageUrl": "/images/logo192.png",
-      "location": "Backyard Garden",
-      "date": "2024-01-01",
-      "tags": ["flowers", "spring", "garden", "nature"],
-      "category": "nature"
+      "title": "Cheers",
+      "description": "Free champagne.",
+      "imageUrl": "/images/gatsby.jpg",
+      "location": "Celebrity Silhouette",
+      "date": "2024-12-24",
+      "tags": ["cruise", "travel", "show" ],
+      "category": "adventure"
     },
     {
       "id": 7,
-      "title": "Tech Meetup",
-      "description": "Great networking event with fellow developers. Always inspiring to meet people who share the same passion for technology.",
-      "imageUrl": "/images/logo192.png",
-      "location": "Tech Hub, SF",
-      "date": "2023-12-28",
-      "tags": ["tech", "networking", "community", "development"],
-      "category": "tech"
+      "title": "Scenic Route",
+      "description": "Walking back from practice in Spain.",
+      "imageUrl": "/images/sabadell.jpg",
+      "location": "Sabadell, Spain",
+      "date": "2023-8-31",
+      "tags": ["nature", "swimming", "national team"],
+      "category": "experience"
     },
     {
       "id": 8,
-      "title": "Road Trip",
-      "description": "Epic road trip across the country. The open road, good music, and amazing landscapes made for unforgettable memories.",
-      "imageUrl": "/images/logo192.png",
-      "location": "Highway 1, CA",
-      "date": "2023-12-20",
-      "tags": ["road trip", "travel", "adventure", "freedom"],
-      "category": "adventure"
+      "title": "Breathe",
+      "description": "OUA Champs race.",
+      "imageUrl": "/images/breathe2.jpg",
+      "location": "Markham, ON",
+      "date": "2023-2-07",
+      "tags": ["swimming", "racing", "school"],
+      "category": "experience"
+    },
+    {
+      "id": 9,
+      "title": "The Spins",
+      "description": "I just graduated high school.",
+      "imageUrl": "/images/Graduation.jpg",
+      "location": "Mississauga, ON",
+      "date": "2023-6-29",
+      "tags": ["school", "milestone"],
+      "category": "experience"
     }
+
   ],
   "categories": [
     { "key": "all", "label": "All Photos" },
     { "key": "nature", "label": "Nature" },
     { "key": "adventure", "label": "Adventure" },
     { "key": "urban", "label": "Urban" },
-    { "key": "lifestyle", "label": "Lifestyle" },
+    { "key": "experience", "label": "Experience" },
     { "key": "art", "label": "Art" },
     { "key": "tech", "label": "Technology" }
   ]

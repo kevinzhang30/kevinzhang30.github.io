@@ -242,13 +242,13 @@ const Projects: React.FC = () => {
                     },
                 }}
               >
-                <CardMedia
+                {/* <CardMedia
                   component="img"
                   height="200"
                   image={project.image}
                   alt={project.title}
                   sx={{ objectFit: 'cover' }}
-                />
+                /> */}
                 
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography variant="h6" component="h3" gutterBottom sx={{ fontWeight: 600 }}>

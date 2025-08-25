@@ -43,7 +43,7 @@ const Gallery: React.FC = () => {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [categories, setCategories] = useState<{ key: string; label: string }[]>([]);
   
-  const fullText = "Cool photos, featuring me!";
+  const fullText = "Fun photos, featuring me!";
   
   useEffect(() => {
     if (currentIndex < fullText.length) {
