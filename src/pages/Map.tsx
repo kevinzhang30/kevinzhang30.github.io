@@ -337,7 +337,7 @@ const Map: React.FC = () => {
                   <Circle
                     key={`circle-${location.id}`}
                     center={location.coordinates}
-                    radius={50000} // 500km radius
+                    radius={200000} // 200km radius
                     pathOptions={{
                       color: getCategoryColor(location.visits[0]?.category || 'all'),
                       fillColor: getCategoryColor(location.visits[0]?.category || 'all'),
