@@ -33,7 +33,7 @@ interface Photo {
   date: string;
   tags: string[];
 }
-
+// 
 const Gallery: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
