@@ -1,0 +1,31 @@
+{
+  "education": {
+    "university": "University of Waterloo & Wilfrid Laurier University",
+    "degrees": "BCS, Bachelor of Computer Science & BBA, Bachelor of Business Administration",
+    "timeline": "2023-2028"
+  },
+  "experience": {
+    "title": "Instructional Support Assistant",
+    "company": "University of Waterloo",
+    "duration": "Jan-Apr 2025",
+    "description": "Technical guidance for 120+ students in Bash, C, and coding principles"
+  },
+  "skills": [
+    "C/C++",
+    "Python", 
+    "Java",
+    "React",
+    "Spring Boot",
+    "AWS",
+    "Git"
+  ],
+  "projects": [
+    "Clinic Management App (Full-stack healthcare web app)",
+    "C-like Language Compiler (C++ compiler with top 1% efficiency)",
+    "Travel Budgeting Android App (Kotlin + Firebase)"
+  ],
+  "resumeFile": {
+    "filename": "Kevin_Zhang_Resume_Winter2026.pdf",
+    "displayName": "Kevin_Zhang_Resume_Winter2026.pdf"
+  }
+}
