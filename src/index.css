@@ -13,6 +13,18 @@
   --color-primary-900: #00373b;
   --color-secondary: #1976d2;
   --font-sans: "Inter", system-ui, sans-serif;
+  --animate-fade-in: fade-in 0.4s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @layer base {
