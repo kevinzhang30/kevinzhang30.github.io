@@ -3,6 +3,7 @@ import Nav from "./components/layout/Nav";
 import Footer from "./components/layout/Footer";
 import PageShell from "./components/layout/PageShell";
 import Experience from "./pages/Experience";
+import Home from "./pages/Home";
 
 function Placeholder({ page }: { page: string }) {
   return (
@@ -22,7 +23,7 @@ export default function App() {
       <div className="flex min-h-screen flex-col">
         <Nav />
         <Routes>
-          <Route path="/" element={<Placeholder page="Home" />} />
+          <Route path="/" element={<Home />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Placeholder page="Projects" />} />
           <Route path="/gallery" element={<Placeholder page="Gallery" />} />
