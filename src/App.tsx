@@ -4,6 +4,7 @@ import Footer from "./components/layout/Footer";
 import PageShell from "./components/layout/PageShell";
 import Experience from "./pages/Experience";
 import Home from "./pages/Home";
+import Projects from "./pages/Projects";
 
 function Placeholder({ page }: { page: string }) {
   return (
@@ -25,7 +26,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/experience" element={<Experience />} />
-          <Route path="/projects" element={<Placeholder page="Projects" />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/gallery" element={<Placeholder page="Gallery" />} />
           <Route path="/map" element={<Placeholder page="Map" />} />
         </Routes>
