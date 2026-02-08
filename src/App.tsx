@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./components/layout/Nav";
 import Footer from "./components/layout/Footer";
 import PageShell from "./components/layout/PageShell";
+import Experience from "./pages/Experience";
 
 function Placeholder({ page }: { page: string }) {
   return (
@@ -22,10 +23,7 @@ export default function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Placeholder page="Home" />} />
-          <Route
-            path="/experience"
-            element={<Placeholder page="Experience" />}
-          />
+          <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Placeholder page="Projects" />} />
           <Route path="/gallery" element={<Placeholder page="Gallery" />} />
           <Route path="/map" element={<Placeholder page="Map" />} />
