@@ -1,9 +1,10 @@
 import PageShell from "../components/layout/PageShell";
 import SectionHeading from "../components/ui/SectionHeading";
 import TimelineEntry from "../components/ui/TimelineEntry";
-import { experiences } from "../data/experience";
+import { useExperiences } from "../hooks/useExperiences";
 
 export default function Experience() {
+  const { experiences } = useExperiences();
   const work = experiences.filter((e) => e.type === "work");
   const education = experiences.filter((e) => e.type === "education");
 

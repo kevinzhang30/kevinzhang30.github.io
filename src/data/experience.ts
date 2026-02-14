@@ -10,23 +10,42 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    company: "University of Waterloo",
-    role: "Instructional Support Assistant",
-    startDate: "Jan 2025",
-    endDate: "Apr 2025",
+    company: "StackAdapt",
+    role: "Software Engineering Intern - Developer Ecosystem (APIs) Team",
+    startDate: "Jan 2026",
+    endDate: "Aug 2026",
     description:
-      "Technical guidance for 120+ students in Bash, C, and coding principles.",
-    technologies: ["Bash", "C", "Linux"],
+      "",
+    technologies: ["Ruby on Rails", "GraphQL", "React"],
     type: "work",
   },
   {
-    company: "University of Waterloo & Wilfrid Laurier University",
-    role: "BCS Computer Science & BBA Business Administration",
+    company: "University of Waterloo",
+    role: "Instructional Support Assistant - CS 136(L)",
+    startDate: "Jan 2025",
+    endDate: "Apr 2025",
+    description:
+      "",
+    technologies: ["Bash", "C", "Linux"],
+    type: "work",
+  },{
+    company: "WonSign Technologies Inc.",
+    role: "Technical Marketing Specialist",
+    startDate: "May 2024",
+    endDate: "Aug 2024",
+    description:
+      "",
+    technologies: ["Typescript", "Figma", "React"],
+    type: "work",
+  },
+  {
+    company: "University of Waterloo",
+    role: "Computer Science",
     startDate: "Sep 2023",
     endDate: "Apr 2028",
     description:
-      "Double degree program in Computer Science and Business Administration.",
-    technologies: [],
+      "Bachelor of Computer Science + Co-op",
+    technologies: ["Algorithms", "Data Structures", "Operating Systems"],
     type: "education",
   },
 ];

@@ -1,31 +1,12 @@
-export interface TravelVisit {
-  id: string;
-  dateRange: string;
-  purpose: string;
-  category: string;
-  description: string;
-  highlights: string[];
-}
+import type { TravelDataMap } from "../features/map/types";
 
-export interface TravelLocation {
-  id: number;
-  city: string;
-  country: string;
-  countryCode: string;
-  coordinates: [number, number];
-  visits: TravelVisit[];
-}
-
-export const locations: TravelLocation[] = [
-  {
-    id: 1,
-    city: "Luxembourg City",
-    country: "Luxembourg",
-    countryCode: "LU",
-    coordinates: [49.6117, 6.1319],
+export const travelData: TravelDataMap = {
+  LUX: {
+    countryName: "Luxembourg",
     visits: [
       {
         id: "luxembourg-2024",
+        city: "Luxembourg City",
         dateRange: "Jan 2024",
         purpose: "Swimming Competition",
         category: "sports",
@@ -35,15 +16,12 @@ export const locations: TravelLocation[] = [
       },
     ],
   },
-  {
-    id: 2,
-    city: "Kingston",
-    country: "Jamaica",
-    countryCode: "JM",
-    coordinates: [18.0, -76.8],
+  JAM: {
+    countryName: "Jamaica",
     visits: [
       {
         id: "jamaica-2024",
+        city: "Kingston",
         dateRange: "Dec 2023 - Jan 2024",
         purpose: "University Training Camp",
         category: "education",
@@ -56,15 +34,12 @@ export const locations: TravelLocation[] = [
       },
     ],
   },
-  {
-    id: 3,
-    city: "Santiago",
-    country: "Chile",
-    countryCode: "CL",
-    coordinates: [-33.4569, -70.6483],
+  CHL: {
+    countryName: "Chile",
     visits: [
       {
         id: "santiago-2023",
+        city: "Santiago",
         dateRange: "Nov 2023",
         purpose: "Swimming Competition",
         category: "sports",
@@ -74,15 +49,12 @@ export const locations: TravelLocation[] = [
       },
     ],
   },
-  {
-    id: 4,
-    city: "Netanya",
-    country: "Israel",
-    countryCode: "IL",
-    coordinates: [32.0563, 34.8516],
+  ISR: {
+    countryName: "Israel",
     visits: [
       {
         id: "netanya-2023",
+        city: "Netanya",
         dateRange: "Sept 2023",
         purpose: "Swimming Competition",
         category: "sports",
@@ -92,15 +64,12 @@ export const locations: TravelLocation[] = [
       },
     ],
   },
-  {
-    id: 5,
-    city: "Barcelona",
-    country: "Spain",
-    countryCode: "ES",
-    coordinates: [41.3851, 2.1734],
+  ESP: {
+    countryName: "Spain",
     visits: [
       {
         id: "barcelona-2023",
+        city: "Barcelona",
         dateRange: "Aug 2023",
         purpose: "Staging Camp",
         category: "sports",
@@ -109,12 +78,6 @@ export const locations: TravelLocation[] = [
       },
     ],
   },
-];
+};
 
-export const travelCategories = [
-  { key: "all", label: "All Visits", color: "#00838f" },
-  { key: "education", label: "Education", color: "#00838f" },
-  { key: "leisure", label: "Leisure", color: "#00838f" },
-  { key: "sports", label: "Sports", color: "#00838f" },
-  { key: "business", label: "Business", color: "#00838f" },
-] as const;
+export const visitedCountryCodes = new Set(Object.keys(travelData));

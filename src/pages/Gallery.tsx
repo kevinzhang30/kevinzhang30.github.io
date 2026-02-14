@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import PageShell from "../components/layout/PageShell";
 import PhotoLightbox from "../components/features/PhotoLightbox";
-import { photos, galleryCategories, type Photo } from "../data/gallery";
+import { galleryCategories, type Photo } from "../data/gallery";
+import { useGallery } from "../hooks/useGallery";
 import { cn } from "../lib/cn";
 
 export default function Gallery() {
+  const { photos } = useGallery();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [selected, setSelected] = useState<Photo | null>(null);

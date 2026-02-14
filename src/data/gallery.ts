@@ -96,7 +96,7 @@ export const photos: Photo[] = [
     description: "OUA Champs race.",
     imageUrl: "/images/breathe2.jpg",
     location: "Markham, ON",
-    date: "2023-02-07",
+    date: "2025-02-07",
     tags: ["swimming", "racing", "school"],
     category: "experience",
   },
