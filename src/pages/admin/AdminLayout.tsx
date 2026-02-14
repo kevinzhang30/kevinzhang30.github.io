@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { cn } from "../../lib/cn";
 
@@ -10,6 +10,12 @@ const links = [
 
 export default function AdminLayout() {
   const { signOut } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleSignOut() {
+    await signOut();
+    navigate("/");
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -35,7 +41,7 @@ export default function AdminLayout() {
             ))}
           </div>
           <button
-            onClick={signOut}
+            onClick={handleSignOut}
             className="rounded-lg px-3 py-1.5 text-sm text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
           >
             Sign out
