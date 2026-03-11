@@ -33,7 +33,7 @@ export default function CountryDrawer({ selectedCode, onClose, travelData }: Pro
       {/* Drawer panel */}
       <div
         className={cn(
-          "fixed z-20 bg-white/95 backdrop-blur-sm shadow-2xl transition-transform duration-300 ease-out overflow-hidden",
+          "fixed z-20 bg-gray-900/95 backdrop-blur-sm shadow-2xl transition-transform duration-300 ease-out overflow-hidden",
           // Mobile: bottom sheet
           "inset-x-0 bottom-0 max-h-[60vh] rounded-t-2xl",
           // Desktop: right side panel
@@ -48,17 +48,17 @@ export default function CountryDrawer({ selectedCode, onClose, travelData }: Pro
           <div className="flex h-full flex-col">
             {/* Mobile drag handle */}
             <div className="flex justify-center pt-3 pb-1 md:hidden">
-              <div className="h-1 w-10 rounded-full bg-gray-300" />
+              <div className="h-1 w-10 rounded-full bg-gray-600" />
             </div>
 
             {/* Header */}
             <div className="flex items-center justify-between px-6 pt-4 pb-2 md:pt-6">
-              <h2 className="text-xl font-bold text-gray-900">
+              <h2 className="text-xl font-bold text-gray-100">
                 {data.countryName}
               </h2>
               <button
                 onClick={onClose}
-                className="rounded-full p-1.5 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+                className="rounded-full p-1.5 text-gray-400 transition-colors hover:bg-gray-800 hover:text-gray-200"
                 aria-label="Close"
               >
                 <svg
@@ -83,22 +83,22 @@ export default function CountryDrawer({ selectedCode, onClose, travelData }: Pro
                 {data.visits.map((visit) => (
                   <div
                     key={visit.id}
-                    className="border-l-2 border-primary-200 pl-4"
+                    className="border-l-2 border-primary-500 pl-4"
                   >
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-gray-100">
                       {visit.city}
                     </p>
-                    <p className="text-sm font-medium text-primary-600">
+                    <p className="text-sm font-medium text-primary-400">
                       {visit.purpose}
                     </p>
-                    <p className="text-xs text-gray-400">{visit.dateRange}</p>
-                    <p className="mt-1.5 text-sm leading-relaxed text-gray-600">
+                    <p className="text-xs text-gray-100">{visit.dateRange}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-gray-300">
                       {visit.description}
                     </p>
                     {visit.highlights.length > 0 && (
                       <div className="mt-2 flex flex-wrap gap-1.5">
                         {visit.highlights.map((h) => (
-                          <Tag key={h} label={h} />
+                          <Tag key={h} label={h} variant="dark" />
                         ))}
                       </div>
                     )}

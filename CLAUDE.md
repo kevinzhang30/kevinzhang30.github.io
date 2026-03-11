@@ -8,9 +8,9 @@ Personal portfolio website for Kevin Zhang, built with React + TypeScript and de
 
 ## Commands
 
-- **Dev server:** `npm start` (localhost:3000)
+- **Dev server:** `npm run dev` (localhost:5173)
 - **Build:** `npm run build`
-- **Test:** `npm test` (react-scripts test, watch mode by default; use `npm test -- --watchAll=false` for CI)
+- **Preview:** `npm run preview`
 - **Deploy:** `npm run deploy` (builds then pushes to gh-pages branch)
 
 ## Tech Stack
