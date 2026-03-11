@@ -5,7 +5,7 @@ export default function Tag({
   variant = "default",
 }: {
   label: string;
-  variant?: "default" | "primary";
+  variant?: "default" | "primary" | "dark";
 }) {
   return (
     <span
@@ -13,7 +13,9 @@ export default function Tag({
         "inline-block rounded-full px-2.5 py-0.5 text-xs font-medium",
         variant === "primary"
           ? "bg-primary-50 text-primary-700"
-          : "bg-gray-100 text-gray-600",
+          : variant === "dark"
+            ? "bg-gray-700 text-gray-300"
+            : "bg-gray-100 text-gray-600",
       )}
     >
       {label}
