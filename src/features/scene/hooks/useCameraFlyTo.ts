@@ -46,12 +46,20 @@ interface UseCameraFlyToOptions {
  *
  * The hook returns a ref-like accessor that callers poll inside useFrame.
  * It does NOT directly touch the three.js camera — that's the CameraRig's job.
+ *
+ * Call `read(now)` fresh from the useFrame loop each frame; do not capture `read`
+ * across renders (its identity is not stable).
  */
 export function useCameraFlyTo({
   targetPose,
   reducedMotion = false,
   onArrive,
 }: UseCameraFlyToOptions) {
+  const onArriveRef = useRef(onArrive);
+  useEffect(() => {
+    onArriveRef.current = onArrive;
+  });
+
   const stateRef = useRef<{
     fromPose: CameraPose;
     toPose: CameraPose;
@@ -97,7 +105,7 @@ export function useCameraFlyTo({
     if (rawProgress >= 1) {
       if (!state.arrived) {
         state.arrived = true;
-        onArrive?.();
+        onArriveRef.current?.();
       }
       return { currentPose: state.toPose, isFlying: false };
     }
