@@ -1,6 +1,7 @@
-import PageShell from "../components/layout/PageShell";
-import SectionHeading from "../components/ui/SectionHeading";
-import TimelineEntry from "../components/ui/TimelineEntry";
+import BackToStation from "../components/ui/BackToStation";
+import SpacePageShell from "../components/ui/SpacePageShell";
+import SpaceSectionHeading from "../components/ui/SpaceSectionHeading";
+import SpaceTimelineEntry from "../components/ui/SpaceTimelineEntry";
 import { useExperiences } from "../hooks/useExperiences";
 
 export default function Experience() {
@@ -9,36 +10,39 @@ export default function Experience() {
   const education = experiences.filter((e) => e.type === "education");
 
   return (
-    <PageShell>
+  <>
+    <SpacePageShell>
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+        <h1 className="font-mono text-3xl font-bold tracking-tight text-white">
           Experience
         </h1>
-        <p className="mt-1 text-gray-500">
+        <p className="mt-1 text-gray-400">
           Where I&rsquo;ve worked and what I&rsquo;ve studied.
         </p>
       </div>
 
       {/* Work experience */}
       <section className="mt-12">
-        <SectionHeading title="Work" />
+        <SpaceSectionHeading title="Work" />
         <div>
           {work.map((entry) => (
-            <TimelineEntry key={entry.company + entry.role} entry={entry} />
+            <SpaceTimelineEntry key={entry.company + entry.role} entry={entry} />
           ))}
         </div>
       </section>
 
       {/* Education */}
       <section className="mt-12">
-        <SectionHeading title="Education" />
+        <SpaceSectionHeading title="Education" />
         <div>
           {education.map((entry) => (
-            <TimelineEntry key={entry.company + entry.role} entry={entry} />
+            <SpaceTimelineEntry key={entry.company + entry.role} entry={entry} />
           ))}
         </div>
       </section>
-    </PageShell>
+    </SpacePageShell>
+    <BackToStation />
+  </>
   );
 }
