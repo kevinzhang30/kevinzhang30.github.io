@@ -1,4 +1,5 @@
 import { useMemo, useRef } from "react";
+import type { RefObject } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import type { CameraPose, DestinationId } from "./types";
@@ -8,7 +9,7 @@ import { useCameraFlyTo } from "./hooks/useCameraFlyTo";
 interface CameraRigProps {
   activeDestination: DestinationId;
   reducedMotion: boolean;
-  mousePosition: { x: number; y: number };
+  mousePositionRef: RefObject<{ x: number; y: number }>;
 }
 
 function destinationToPose(id: DestinationId): CameraPose {
@@ -22,7 +23,7 @@ function destinationToPose(id: DestinationId): CameraPose {
 export default function CameraRig({
   activeDestination,
   reducedMotion,
-  mousePosition,
+  mousePositionRef,
 }: CameraRigProps) {
   const { camera } = useThree();
   const perspectiveCamera = camera as THREE.PerspectiveCamera;
@@ -58,8 +59,9 @@ export default function CameraRig({
     const driftY = Math.cos(t * 0.31) * 0.16 * parallaxScale;
 
     // Mouse parallax on the lookAt target.
-    const parallaxX = mousePosition.x * 0.6 * parallaxScale;
-    const parallaxY = mousePosition.y * 0.3 * parallaxScale;
+    const mouse = mousePositionRef.current;
+    const parallaxX = mouse.x * 0.6 * parallaxScale;
+    const parallaxY = mouse.y * 0.3 * parallaxScale;
 
     perspectiveCamera.position.set(px + driftX, py + driftY, pz);
     lookAtVec.current.set(lx + parallaxX, ly + parallaxY, lz);

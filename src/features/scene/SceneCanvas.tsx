@@ -19,8 +19,8 @@ export default function SceneCanvas() {
   const reducedMotion = useReducedMotion();
 
   const [hoveredId, setHoveredId] = useState<DestinationId | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isFlying, setIsFlying] = useState(false);
+  const mousePositionRef = useRef({ x: 0, y: 0 });
   const prevDestinationRef = useRef<DestinationId>(activeDestination);
 
   useEffect(() => {
@@ -43,10 +43,8 @@ export default function SceneCanvas() {
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      setMousePosition({
-        x: (event.clientX / window.innerWidth) * 2 - 1,
-        y: -((event.clientY / window.innerHeight) * 2 - 1),
-      });
+      mousePositionRef.current.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mousePositionRef.current.y = -((event.clientY / window.innerHeight) * 2 - 1);
     };
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
@@ -88,7 +86,7 @@ export default function SceneCanvas() {
             activeDestination={activeDestination}
             hoveredId={hoveredId}
             reducedMotion={reducedMotion}
-            mousePosition={mousePosition}
+            mousePositionRef={mousePositionRef}
             onHoverChange={handleHoverChange}
             onSelect={handleSelect}
           />

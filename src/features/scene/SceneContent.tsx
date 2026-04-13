@@ -1,3 +1,4 @@
+import type { RefObject } from "react";
 import { EffectComposer, Bloom, Noise, Vignette } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import type { Destination, DestinationId } from "./types";
@@ -21,7 +22,7 @@ interface SceneContentProps {
   activeDestination: DestinationId;
   hoveredId: DestinationId | null;
   reducedMotion: boolean;
-  mousePosition: { x: number; y: number };
+  mousePositionRef: RefObject<{ x: number; y: number }>;
   onHoverChange: (id: DestinationId | null) => void;
   onSelect: (destination: Destination) => void;
 }
@@ -37,7 +38,7 @@ export default function SceneContent({
   activeDestination,
   hoveredId,
   reducedMotion,
-  mousePosition,
+  mousePositionRef,
   onHoverChange,
   onSelect,
 }: SceneContentProps) {
@@ -66,7 +67,7 @@ export default function SceneContent({
       <CameraRig
         activeDestination={activeDestination}
         reducedMotion={reducedMotion}
-        mousePosition={mousePosition}
+        mousePositionRef={mousePositionRef}
       />
 
       <NebulaBackdrop />
