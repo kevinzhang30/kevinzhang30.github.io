@@ -64,7 +64,6 @@ export default function CameraRig({
     perspectiveCamera.position.set(px + driftX, py + driftY, pz);
     lookAtVec.current.set(lx + parallaxX, ly + parallaxY, lz);
     perspectiveCamera.lookAt(lookAtVec.current);
-    perspectiveCamera.updateProjectionMatrix();
   });
 
   return null;
