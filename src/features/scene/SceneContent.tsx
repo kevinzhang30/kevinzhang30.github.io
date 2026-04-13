@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { EffectComposer, Bloom, Noise, Vignette } from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
 import type { Destination, DestinationId } from "./types";
@@ -45,10 +44,7 @@ export default function SceneContent({
   const isHome = activeDestination === HOME_DESTINATION_ID;
   const cockpitIntensity = isHome ? HOME_COCKPIT_INTENSITY : DESTINATION_COCKPIT_INTENSITY;
 
-  const bloomIntensity = useMemo(() => {
-    if (hoveredId && isHome) return 0.9;
-    return isHome ? 0.5 : 0.7;
-  }, [hoveredId, isHome]);
+  const bloomIntensity = hoveredId && isHome ? 0.9 : isHome ? 0.5 : 0.7;
 
   return (
     <>
