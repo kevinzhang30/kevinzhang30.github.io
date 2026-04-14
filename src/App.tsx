@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import SceneCanvas from "./features/scene/SceneCanvas";
@@ -50,6 +50,7 @@ function MobileRoutes() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/map" element={<Map />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
     </Suspense>
