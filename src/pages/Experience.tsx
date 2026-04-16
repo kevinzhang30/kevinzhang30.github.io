@@ -1,4 +1,4 @@
-import BackToStation from "../components/ui/BackToStation";
+import BackToDashboard from "../components/ui/BackToDashboard";
 import SpacePageShell from "../components/ui/SpacePageShell";
 import SpaceSectionHeading from "../components/ui/SpaceSectionHeading";
 import SpaceTimelineEntry from "../components/ui/SpaceTimelineEntry";
@@ -42,7 +42,7 @@ export default function Experience() {
         </div>
       </section>
     </SpacePageShell>
-    <BackToStation />
+    <BackToDashboard />
   </>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import BackToStation from "../components/ui/BackToStation";
+import BackToDashboard from "../components/ui/BackToDashboard";
 import SpacePageShell from "../components/ui/SpacePageShell";
 import PhotoLightbox from "../components/features/PhotoLightbox";
 import { galleryCategories, type Photo } from "../data/gallery";
@@ -103,7 +103,7 @@ export default function Gallery() {
         <PhotoLightbox photo={selected} onClose={() => setSelected(null)} />
       )}
     </SpacePageShell>
-    <BackToStation />
+    <BackToDashboard />
   </>
   );
 }

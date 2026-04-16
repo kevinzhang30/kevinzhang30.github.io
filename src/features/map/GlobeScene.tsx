@@ -1,13 +1,19 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Globe from "react-globe.gl";
 import type { GlobeMethods } from "react-globe.gl";
+import * as THREE from "three";
 import {
   GLOBE_INITIAL_POV,
   GLOBE_IMAGE_URL,
-  ATMOSPHERE_COLOR,
+  ATMOSPHERE_ALTITUDE,
   GLOBE_AUTO_ROTATE_SPEED,
 } from "./constants";
 import { addStarField } from "./starField";
+
+const ATMOSPHERE_TINT = "#0b5a66";
+const ATMOSPHERE_HEIGHT = ATMOSPHERE_ALTITUDE * 0.72;
+const HALO_TINT = "#17889a";
+const HALO_INTENSITY = 0.28;
 
 interface GeoFeature {
   type: string;
@@ -74,6 +80,39 @@ export default function GlobeScene({
     // Add star field
     if (!starsAddedRef.current) {
       addStarField(globe.scene());
+
+      // Fresnel glow halo — bright at limb, invisible at center
+      const glowGeo = new THREE.SphereGeometry(107, 64, 64);
+      const glowMat = new THREE.ShaderMaterial({
+        uniforms: {
+          glowColor: { value: new THREE.Color(HALO_TINT) },
+        },
+        vertexShader: `
+          varying vec3 vNormal;
+          varying vec3 vWorldPos;
+          void main() {
+            vNormal = normalize(normalMatrix * normal);
+            vWorldPos = (modelMatrix * vec4(position, 1.0)).xyz;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: `
+          uniform vec3 glowColor;
+          varying vec3 vNormal;
+          varying vec3 vWorldPos;
+          void main() {
+            float fresnel = 1.0 - abs(dot(normalize(cameraPosition - vWorldPos), vNormal));
+            float intensity = pow(fresnel, 1.35) * ${HALO_INTENSITY.toFixed(2)};
+            gl_FragColor = vec4(glowColor, intensity);
+          }
+        `,
+        side: THREE.FrontSide,
+        blending: THREE.AdditiveBlending,
+        transparent: true,
+        depthWrite: false,
+      });
+      globe.scene().add(new THREE.Mesh(glowGeo, glowMat));
+
       starsAddedRef.current = true;
     }
   }, [globeRef]);
@@ -88,14 +127,14 @@ export default function GlobeScene({
           backgroundColor="rgba(0,0,0,0)"
           globeImageUrl={GLOBE_IMAGE_URL}
           showAtmosphere={true}
-          atmosphereColor={ATMOSPHERE_COLOR}
-          atmosphereAltitude={0.15}
+          atmosphereColor={ATMOSPHERE_TINT}
+          atmosphereAltitude={ATMOSPHERE_HEIGHT}
           polygonsData={polygonsData}
           polygonGeoJsonGeometry="geometry"
           polygonCapColor={polygonCapColor}
           polygonSideColor={polygonSideColor}
           polygonAltitude={polygonAltitude}
-          polygonStrokeColor={() => ATMOSPHERE_COLOR}
+          polygonStrokeColor={() => ATMOSPHERE_TINT}
           polygonsTransitionDuration={300}
           onPolygonHover={onPolygonHover}
           onPolygonClick={onPolygonClick}

@@ -51,12 +51,14 @@ describe("destination registry", () => {
     expect(HOME_DESTINATION_ID).toBe("home");
   });
 
-  it("every non-home destination has a cameraPosition distinct from home", () => {
+  it("every flyable non-home destination has a cameraPosition distinct from home", () => {
     const home = getDestinationById("home");
     expect(home).toBeDefined();
     const homePos = home!.cameraPosition.join(",");
+    // Earth routes to the map page instead of flying the scene camera, so it
+    // reuses home's pose. All other destinations must move the camera.
     for (const d of DESTINATIONS) {
-      if (d.id === "home") continue;
+      if (d.id === "home" || d.id === "earth") continue;
       expect(d.cameraPosition.join(",")).not.toBe(homePos);
     }
   });

@@ -1,5 +1,6 @@
 import type { Experience } from "../data/experience";
 import type { Photo } from "../data/gallery";
+import type { Project } from "../data/projects";
 import type { TravelVisit, CountryTravelData, TravelDataMap } from "../features/map/types";
 
 // ── DB row types (snake_case, matching Supabase tables) ────────────
@@ -46,6 +47,18 @@ export interface PhotoRow {
   sort_order: number;
 }
 
+export interface ProjectRow {
+  id: string;
+  title: string;
+  description: string;
+  technologies: string[];
+  github_url: string;
+  live_url: string | null;
+  featured: boolean;
+  category: "web" | "mobile" | "systems" | "other";
+  sort_order: number;
+}
+
 // ── Mapper functions (DB rows → app interfaces) ────────────
 
 export function mapExperience(row: ExperienceRow): Experience {
@@ -57,6 +70,18 @@ export function mapExperience(row: ExperienceRow): Experience {
     description: row.description,
     technologies: row.technologies,
     type: row.type,
+  };
+}
+
+export function mapProject(row: ProjectRow): Project {
+  return {
+    title: row.title,
+    description: row.description,
+    technologies: row.technologies,
+    githubUrl: row.github_url,
+    liveUrl: row.live_url ?? undefined,
+    featured: row.featured,
+    category: row.category,
   };
 }
 

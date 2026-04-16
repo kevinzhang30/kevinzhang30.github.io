@@ -1,9 +1,9 @@
 import { useState } from "react";
-import BackToStation from "../components/ui/BackToStation";
+import BackToDashboard from "../components/ui/BackToDashboard";
 import SpacePageShell from "../components/ui/SpacePageShell";
 import SpaceCard from "../components/ui/SpaceCard";
 import SpaceTag from "../components/ui/SpaceTag";
-import { projects } from "../data/projects";
+import { useProjects } from "../hooks/useProjects";
 import { cn } from "../lib/cn";
 
 const categories = [
@@ -16,6 +16,7 @@ const categories = [
 export default function Projects() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
+  const { projects } = useProjects();
 
   const filtered = projects.filter((p) => {
     const matchesSearch =
@@ -125,7 +126,7 @@ export default function Projects() {
         </p>
       )}
     </SpacePageShell>
-    <BackToStation />
+    <BackToDashboard />
   </>
   );
 }

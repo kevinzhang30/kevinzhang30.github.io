@@ -1,15 +1,15 @@
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
+import * as THREE from "three";
 import { useNavigate } from "react-router-dom";
 import SceneContent from "./SceneContent";
-import HomeHUD from "./overlays/HomeHUD";
+import Dashboard from "./overlays/Dashboard";
 import LoadingOverlay from "./overlays/LoadingOverlay";
-import DestinationPlaceholder from "./overlays/DestinationPlaceholder";
 import TransitionOverlay from "./overlays/TransitionOverlay";
-import BackToStation from "../../components/ui/BackToStation";
 import { useDestinationFromRoute } from "./hooks/useDestinationFromRoute";
 import { useReducedMotion } from "./hooks/useReducedMotion";
 import { useBackToHome } from "./hooks/useBackToHome";
+import { usePanelVisibility } from "./panelVisibility";
 import type { Destination, DestinationId } from "./types";
 import { getDestinationById, HOME_DESTINATION_ID } from "./config";
 
@@ -17,10 +17,14 @@ export default function SceneCanvas() {
   const navigate = useNavigate();
   const activeDestination = useDestinationFromRoute();
   const reducedMotion = useReducedMotion();
+  const { hidden: panelHidden } = usePanelVisibility();
 
   const [hoveredId, setHoveredId] = useState<DestinationId | null>(null);
   const [isFlying, setIsFlying] = useState(false);
+  const [portalZooming, setPortalZooming] = useState(false);
   const mousePositionRef = useRef({ x: 0, y: 0 });
+  const satelliteWorldRef = useRef(new THREE.Vector3());
+  const rocketWorldRef = useRef(new THREE.Vector3());
   const prevDestinationRef = useRef<DestinationId>(activeDestination);
 
   useEffect(() => {
@@ -55,6 +59,12 @@ export default function SceneCanvas() {
   const handleSelect = useCallback(
     (destination: Destination) => {
       setHoveredId(null);
+      if (destination.id === "earth") {
+        setPortalZooming(true);
+        setIsFlying(true);
+        window.setTimeout(() => navigate(destination.route), 900);
+        return;
+      }
       navigate(destination.route);
     },
     [navigate],
@@ -64,29 +74,35 @@ export default function SceneCanvas() {
     setHoveredId(id);
   }, []);
 
-  const handleCanvasPointerMissed = useCallback(() => {
-    if (activeDestination !== HOME_DESTINATION_ID) {
-      navigate("/");
-    }
-  }, [activeDestination, navigate]);
-
   const activeDestinationObj = getDestinationById(activeDestination);
   const isHome = activeDestination === HOME_DESTINATION_ID;
 
   return (
-    <div className="fixed inset-0 bg-[#020611] text-white">
+    <div
+      className="fixed inset-0 text-white"
+      style={{
+        backgroundColor: "#020611",
+        backgroundImage: "url(backgrounds/background3.png)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <Canvas
         dpr={[1, 1.75]}
-        gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         camera={{ position: [0, 0.9, 8.8], fov: 38, near: 0.1, far: 250 }}
-        onPointerMissed={handleCanvasPointerMissed}
       >
         <Suspense fallback={null}>
           <SceneContent
             activeDestination={activeDestination}
             hoveredId={hoveredId}
+            suppressGlow={panelHidden}
+            portalZooming={portalZooming}
             reducedMotion={reducedMotion}
             mousePositionRef={mousePositionRef}
+            satelliteWorldRef={satelliteWorldRef}
+            rocketWorldRef={rocketWorldRef}
             onHoverChange={handleHoverChange}
             onSelect={handleSelect}
           />
@@ -94,11 +110,12 @@ export default function SceneCanvas() {
       </Canvas>
 
       <LoadingOverlay />
-      <HomeHUD hoveredId={hoveredId} isVisible={isHome} onSelect={handleSelect} />
-      {!isHome && activeDestinationObj && (
-        <DestinationPlaceholder destination={activeDestinationObj} />
-      )}
-      {!isHome && <BackToStation />}
+      <Dashboard
+        hoveredId={hoveredId}
+        isVisible={isHome}
+        onHoverChange={handleHoverChange}
+        onSelect={handleSelect}
+      />
       <TransitionOverlay destination={activeDestinationObj ?? null} isFlying={isFlying} />
     </div>
   );
