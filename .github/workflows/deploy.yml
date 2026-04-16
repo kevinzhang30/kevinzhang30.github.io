@@ -25,6 +25,7 @@ jobs:
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_ENABLE_MOBILE_FALLBACK: "false"
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
