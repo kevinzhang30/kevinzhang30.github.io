@@ -1,12 +1,14 @@
 import { useState } from "react";
 
 const MOBILE_MAX_WIDTH = 768;
+export const MOBILE_FALLBACK_ENABLED =
+  import.meta.env.VITE_ENABLE_MOBILE_FALLBACK !== "false";
 
 export function shouldUseMobileFallback(
   pointerIsCoarse: boolean,
   innerWidth: number,
 ): boolean {
-  return pointerIsCoarse && innerWidth < MOBILE_MAX_WIDTH;
+  return MOBILE_FALLBACK_ENABLED && pointerIsCoarse && innerWidth < MOBILE_MAX_WIDTH;
 }
 
 function detectMobile(): boolean {

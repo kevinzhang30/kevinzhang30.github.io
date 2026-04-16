@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { getDestinationByRoute } from "../../features/scene/config";
+import { useMobileFallback } from "../../features/scene/hooks/useMobileFallback";
 
 interface BackToDashboardProps {
   accent?: string;
@@ -9,7 +10,13 @@ const DEFAULT_ACCENT = "#7acfff";
 
 export default function BackToDashboard({ accent }: BackToDashboardProps) {
   const { pathname } = useLocation();
+  const isMobile = useMobileFallback();
   const resolved = accent ?? getDestinationByRoute(pathname)?.accent ?? DEFAULT_ACCENT;
+
+  if (isMobile) {
+    return null;
+  }
+
   return (
     <Link
       to="/"
