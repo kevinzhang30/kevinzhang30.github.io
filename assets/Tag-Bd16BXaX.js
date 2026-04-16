@@ -1,1 +1,0 @@
-import{dA as a}from"./index-BZEZEId1.js";import{c as e}from"./cn-fNskMoFt.js";function n({label:t,variant:r="default"}){return a.jsx("span",{className:e("inline-block rounded-full px-2.5 py-0.5 text-xs font-medium",r==="primary"?"bg-primary-50 text-primary-700":r==="dark"?"bg-gray-700 text-gray-300":"bg-gray-100 text-gray-600"),children:t})}export{n as T};
