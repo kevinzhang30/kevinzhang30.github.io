@@ -9,7 +9,7 @@ interface SatelliteProps extends SceneObjectProps {
   worldPositionRef?: RefObject<THREE.Vector3>;
 }
 
-const STATION_URL = "/models/station2.glb";
+const STATION_URL = "/models/station3.glb";
 const MODEL_SCALE = 3;
 const ORBIT_RADIUS = 21;
 const ORBIT_SPEED = 0.22;
@@ -112,5 +112,3 @@ export default function Satellite({
     </group>
   );
 }
-
-useGLTF.preload(STATION_URL);
