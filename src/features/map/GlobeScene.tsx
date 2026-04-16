@@ -13,7 +13,7 @@ import { addStarField } from "./starField";
 const ATMOSPHERE_TINT = "#0b5a66";
 const ATMOSPHERE_HEIGHT = ATMOSPHERE_ALTITUDE * 0.72;
 const HALO_TINT = "#17889a";
-const HALO_INTENSITY = 0.28;
+const HALO_INTENSITY = 0.16;
 
 interface GeoFeature {
   type: string;
@@ -102,7 +102,7 @@ export default function GlobeScene({
           varying vec3 vWorldPos;
           void main() {
             float fresnel = 1.0 - abs(dot(normalize(cameraPosition - vWorldPos), vNormal));
-            float intensity = pow(fresnel, 1.35) * ${HALO_INTENSITY.toFixed(2)};
+            float intensity = pow(fresnel, 3.5) * ${HALO_INTENSITY.toFixed(2)};
             gl_FragColor = vec4(glowColor, intensity);
           }
         `,
