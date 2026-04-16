@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { RefObject } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
@@ -10,7 +10,12 @@ interface CameraRigProps {
   activeDestination: DestinationId;
   reducedMotion: boolean;
   mousePositionRef: RefObject<{ x: number; y: number }>;
+  satelliteWorldRef: RefObject<THREE.Vector3>;
+  rocketWorldRef: RefObject<THREE.Vector3>;
 }
+
+const SATELLITE_CAMERA_OFFSET: [number, number, number] = [5, 2.5, 5];
+const ROCKET_CAMERA_OFFSET: [number, number, number] = [3, 1.5, 4];
 
 function destinationToPose(id: DestinationId): CameraPose {
   const d = getDestinationById(id) ?? getDestinationById(HOME_DESTINATION_ID)!;
@@ -20,18 +25,38 @@ function destinationToPose(id: DestinationId): CameraPose {
   };
 }
 
+function poseFromSatellitePosition(p: THREE.Vector3): CameraPose {
+  return {
+    position: [
+      p.x + SATELLITE_CAMERA_OFFSET[0],
+      p.y + SATELLITE_CAMERA_OFFSET[1],
+      p.z + SATELLITE_CAMERA_OFFSET[2],
+    ],
+    lookAt: [p.x, p.y, p.z],
+  };
+}
+
 export default function CameraRig({
   activeDestination,
   reducedMotion,
   mousePositionRef,
+  satelliteWorldRef,
+  rocketWorldRef,
 }: CameraRigProps) {
   const { camera } = useThree();
   const perspectiveCamera = camera as THREE.PerspectiveCamera;
 
-  const targetPose = useMemo(
-    () => destinationToPose(activeDestination),
-    [activeDestination],
+  const [targetPose, setTargetPose] = useState<CameraPose>(() =>
+    destinationToPose(activeDestination),
   );
+
+  useEffect(() => {
+    if (activeDestination === "satellite" && satelliteWorldRef.current) {
+      setTargetPose(poseFromSatellitePosition(satelliteWorldRef.current));
+    } else {
+      setTargetPose(destinationToPose(activeDestination));
+    }
+  }, [activeDestination, satelliteWorldRef]);
 
   const { read } = useCameraFlyTo({ targetPose, reducedMotion });
 
@@ -43,8 +68,36 @@ export default function CameraRig({
     const { currentPose } = read(now);
 
     const isHome = activeDestination === HOME_DESTINATION_ID;
-    const parallaxScale = isHome ? 1 : 0.2;
+    const isSatellite = activeDestination === "satellite";
+    const isRocket = activeDestination === "rocket";
     const t = state.clock.elapsedTime;
+
+    // Live-tracking branch: follow a moving object each frame via damped lerp.
+    // Bypasses the tween entirely so the camera naturally eases in from wherever
+    // it was and keeps chasing the moving target.
+    const liveTarget =
+      isSatellite && satelliteWorldRef.current
+        ? { pos: satelliteWorldRef.current, offset: SATELLITE_CAMERA_OFFSET }
+        : isRocket && rocketWorldRef.current
+          ? { pos: rocketWorldRef.current, offset: ROCKET_CAMERA_OFFSET }
+          : null;
+
+    if (liveTarget) {
+      const p = liveTarget.pos;
+      const o = liveTarget.offset;
+      const targetX = p.x + o[0];
+      const targetY = p.y + o[1];
+      const targetZ = p.z + o[2];
+      const lerpFactor = reducedMotion ? 0.4 : 0.06;
+      perspectiveCamera.position.x += (targetX - perspectiveCamera.position.x) * lerpFactor;
+      perspectiveCamera.position.y += (targetY - perspectiveCamera.position.y) * lerpFactor;
+      perspectiveCamera.position.z += (targetZ - perspectiveCamera.position.z) * lerpFactor;
+      lookAtVec.current.set(p.x, p.y, p.z);
+      perspectiveCamera.lookAt(lookAtVec.current);
+      return;
+    }
+
+    const parallaxScale = isHome ? 1 : 0.2;
 
     // Base pose from the tween.
     const px = currentPose.position[0];

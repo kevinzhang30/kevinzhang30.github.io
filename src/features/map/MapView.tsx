@@ -3,7 +3,7 @@ import { useTravel } from "../../hooks/useTravel";
 import { useGlobe } from "./useGlobe";
 import GlobeScene from "./GlobeScene";
 import CountryDrawer from "./CountryDrawer";
-import MapBackButton from "./MapBackButton";
+import BackToDashboard from "../../components/ui/BackToDashboard";
 
 export default function MapView() {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
@@ -40,7 +40,7 @@ export default function MapView() {
         onPolygonHover={onPolygonHover}
         onPolygonClick={onPolygonClick}
       />
-      <MapBackButton />
+      <BackToDashboard />
       <div className="fixed top-4 right-4 z-50 overflow-hidden rounded-full bg-gray-900 shadow-lg">
         <div
           className="absolute inset-0 bg-primary-500/30"

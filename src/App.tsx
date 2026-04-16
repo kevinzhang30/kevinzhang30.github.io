@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import SceneCanvas from "./features/scene/SceneCanvas";
+import { PanelVisibilityProvider } from "./features/scene/panelVisibility";
 import { useMobileFallback } from "./features/scene/hooks/useMobileFallback";
 import MobileLayout from "./pages/mobile/MobileLayout";
 import MobileHome from "./pages/mobile/MobileHome";
@@ -14,6 +15,7 @@ const Map = lazy(() => import("./pages/Map"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
 const AdminExperience = lazy(() => import("./pages/admin/AdminExperience"));
+const AdminProjects = lazy(() => import("./pages/admin/AdminProjects"));
 const AdminTravel = lazy(() => import("./pages/admin/AdminTravel"));
 const AdminGallery = lazy(() => import("./pages/admin/AdminGallery"));
 
@@ -31,6 +33,7 @@ function AdminRoutes() {
             }
           >
             <Route path="/admin/experience" element={<AdminExperience />} />
+            <Route path="/admin/projects" element={<AdminProjects />} />
             <Route path="/admin/trips" element={<AdminTravel />} />
             <Route path="/admin/gallery" element={<AdminGallery />} />
           </Route>
@@ -58,23 +61,31 @@ function MobileRoutes() {
 }
 
 /**
- * Desktop scene shell. SceneCanvas is mounted once and reads the route itself
- * via useDestinationFromRoute. The <Routes> block exists so route changes
- * register with react-router (the back button works, useLocation fires), but
- * each Route renders `null` because SceneCanvas owns the rendering.
+ * Desktop scene shell. SceneCanvas is mounted once for scene-backed routes.
+ * `/map` bypasses the scene entirely and renders the three.js globe page so
+ * the scene canvas unmounts and releases its GPU resources while the map is up.
  */
 function SceneRoutes() {
+  const { pathname } = useLocation();
+
+  if (pathname === "/map") {
+    return (
+      <Suspense fallback={null}>
+        <Map />
+      </Suspense>
+    );
+  }
+
   return (
-    <>
+    <PanelVisibilityProvider>
       <SceneCanvas />
       <Routes>
         <Route path="/" element={null} />
-        <Route path="/experience" element={null} />
-        <Route path="/projects" element={null} />
-        <Route path="/gallery" element={null} />
-        <Route path="/map" element={null} />
+        <Route path="/experience" element={<Experience />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/gallery" element={<Gallery />} />
       </Routes>
-    </>
+    </PanelVisibilityProvider>
   );
 }
 
