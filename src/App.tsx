@@ -5,13 +5,13 @@ import ProtectedRoute from "./components/admin/ProtectedRoute";
 import SceneCanvas from "./features/scene/SceneCanvas";
 import { PanelVisibilityProvider } from "./features/scene/panelVisibility";
 import { useMobileFallback } from "./features/scene/hooks/useMobileFallback";
-import MobileLayout from "./pages/mobile/MobileLayout";
-import MobileHome from "./pages/mobile/MobileHome";
-import Experience from "./pages/Experience";
-import Projects from "./pages/Projects";
-import Gallery from "./pages/Gallery";
 
 const Map = lazy(() => import("./pages/Map"));
+const MobileLayout = lazy(() => import("./pages/mobile/MobileLayout"));
+const MobileHome = lazy(() => import("./pages/mobile/MobileHome"));
+const Experience = lazy(() => import("./pages/Experience"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Gallery = lazy(() => import("./pages/Gallery"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
 const AdminExperience = lazy(() => import("./pages/admin/AdminExperience"));
@@ -79,12 +79,14 @@ function SceneRoutes() {
   return (
     <PanelVisibilityProvider>
       <SceneCanvas />
-      <Routes>
-        <Route path="/" element={null} />
-        <Route path="/experience" element={<Experience />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/gallery" element={<Gallery />} />
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={null} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/gallery" element={<Gallery />} />
+        </Routes>
+      </Suspense>
     </PanelVisibilityProvider>
   );
 }

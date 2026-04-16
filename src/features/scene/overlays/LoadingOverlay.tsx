@@ -1,9 +1,16 @@
 import { useProgress } from "@react-three/drei";
 import { useState, useEffect } from "react";
 
+const MAX_BLOCKING_TIME_MS = 1400;
+
 export default function LoadingOverlay() {
   const { progress, active } = useProgress();
   const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setVisible(false), MAX_BLOCKING_TIME_MS);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (!active && progress === 100) {

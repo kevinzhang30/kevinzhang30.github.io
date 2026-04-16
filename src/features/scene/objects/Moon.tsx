@@ -5,7 +5,7 @@ import * as THREE from "three";
 import type { SceneObjectProps } from "./types";
 
 
-const GAS_GIANT_URL = "/models/gas-giant.glb";
+const GAS_GIANT_URL = "/models/gas-giant2.glb";
 const MODEL_SCALE = 15;
 
 export default function Moon({
@@ -88,5 +88,3 @@ export default function Moon({
     </group>
   );
 }
-
-useGLTF.preload(GAS_GIANT_URL);
