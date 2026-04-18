@@ -88,3 +88,5 @@ export default function AsteroidBelt() {
     </group>
   );
 }
+
+useGLTF.preload(ASSET_URL);

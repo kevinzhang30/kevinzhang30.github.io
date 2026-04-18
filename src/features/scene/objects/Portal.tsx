@@ -118,3 +118,5 @@ export default function Portal({
     </group>
   );
 }
+
+useGLTF.preload(PORTAL_URL);

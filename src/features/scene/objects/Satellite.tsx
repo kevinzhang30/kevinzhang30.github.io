@@ -112,3 +112,5 @@ export default function Satellite({
     </group>
   );
 }
+
+useGLTF.preload(STATION_URL);

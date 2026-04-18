@@ -1,23 +1,30 @@
 import { useProgress } from "@react-three/drei";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-const MAX_BLOCKING_TIME_MS = 1400;
+const MAX_WAIT_MS = 30_000;
 
 export default function LoadingOverlay() {
   const { progress, active } = useProgress();
   const [visible, setVisible] = useState(true);
+  const dismissed = useRef(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setVisible(false), MAX_BLOCKING_TIME_MS);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (!active && progress === 100) {
+    if (!active && progress === 100 && !dismissed.current) {
+      dismissed.current = true;
       const timer = setTimeout(() => setVisible(false), 600);
       return () => clearTimeout(timer);
     }
   }, [active, progress]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      if (!dismissed.current) {
+        dismissed.current = true;
+        setVisible(false);
+      }
+    }, MAX_WAIT_MS);
+    return () => clearTimeout(timer);
+  }, []);
 
   if (!visible) return null;
 

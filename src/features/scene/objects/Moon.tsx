@@ -88,3 +88,5 @@ export default function Moon({
     </group>
   );
 }
+
+useGLTF.preload(GAS_GIANT_URL);

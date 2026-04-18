@@ -82,7 +82,7 @@ export default function SceneCanvas() {
       className="fixed inset-0 text-white"
       style={{
         backgroundColor: "#020611",
-        backgroundImage: "url(backgrounds/background3.png)",
+        backgroundImage: "url(backgrounds/background3.webp)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
