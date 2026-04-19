@@ -1,0 +1,1 @@
+import{j as t}from"./r3f-A9HPvB7I.js";function a({label:e}){return t.jsx("span",{className:"inline-block rounded-full border border-teal-500/20 bg-teal-500/10 px-2.5 py-0.5 text-xs font-medium text-teal-400",children:e})}export{a as S};
