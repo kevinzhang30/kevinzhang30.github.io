@@ -35,6 +35,10 @@ export default function Portal({
       if (!mesh.isMesh) return;
       mesh.castShadow = true;
       mesh.receiveShadow = true;
+      const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+      materials.forEach((mat) => {
+        mat.depthWrite = false;
+      });
     });
   }, [scene]);
 
