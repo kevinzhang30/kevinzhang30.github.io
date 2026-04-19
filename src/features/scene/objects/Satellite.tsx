@@ -34,6 +34,7 @@ export default function Satellite({
       if (!mesh.isMesh) return;
       mesh.castShadow = true;
       mesh.receiveShadow = true;
+      mesh.renderOrder = 1;
     });
   }, [scene]);
 
