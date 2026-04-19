@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 import type { RefObject } from "react";
 import type * as THREE from "three";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
@@ -12,6 +12,7 @@ import Satellite from "./objects/Satellite";
 import Moon from "./objects/Moon";
 import Portal from "./objects/Portal";
 import AsteroidBelt from "./objects/AsteroidBelt";
+import ModelErrorBoundary from "./objects/ModelErrorBoundary";
 
 interface SceneContentProps {
   activeDestination: DestinationId;
@@ -47,41 +48,8 @@ export default function SceneContent({
 }: SceneContentProps) {
   const isHome = activeDestination === HOME_DESTINATION_ID;
   const glowActiveId = suppressGlow ? null : activeDestination;
-  const [primaryAssetsReady, setPrimaryAssetsReady] = useState(false);
-  const [secondaryAssetsReady, setSecondaryAssetsReady] = useState(false);
 
   const bloomIntensity = hoveredId && isHome ? 0.9 : isHome ? 0.5 : 0.7;
-
-  useEffect(() => {
-    if (activeDestination !== HOME_DESTINATION_ID) {
-      setPrimaryAssetsReady(true);
-      setSecondaryAssetsReady(true);
-      return;
-    }
-
-    const primaryTimer = window.setTimeout(() => setPrimaryAssetsReady(true), 120);
-    const secondaryTimer = window.setTimeout(() => setSecondaryAssetsReady(true), 1400);
-
-    return () => {
-      window.clearTimeout(primaryTimer);
-      window.clearTimeout(secondaryTimer);
-    };
-  }, [activeDestination]);
-
-  const showRocket =
-    primaryAssetsReady || activeDestination === "rocket" || hoveredId === "rocket";
-  const showPortal =
-    primaryAssetsReady ||
-    portalZooming ||
-    activeDestination === "earth" ||
-    hoveredId === "earth";
-  const showMoon =
-    secondaryAssetsReady || activeDestination === "moon" || hoveredId === "moon";
-  const showSatellite =
-    secondaryAssetsReady ||
-    activeDestination === "satellite" ||
-    hoveredId === "satellite";
-  const showAsteroidBelt = secondaryAssetsReady || !isHome;
 
   return (
     <>
@@ -99,13 +67,13 @@ export default function SceneContent({
 
       <Starfield />
       <ShootingStars />
-      {showAsteroidBelt ? (
+      <ModelErrorBoundary>
         <Suspense fallback={null}>
           <AsteroidBelt />
         </Suspense>
-      ) : null}
+      </ModelErrorBoundary>
 
-      {showRocket ? (
+      <ModelErrorBoundary>
         <Suspense fallback={null}>
           <Rocket
             destination={OBJECTS_BY_ID.rocket}
@@ -116,8 +84,8 @@ export default function SceneContent({
             worldPositionRef={rocketWorldRef}
           />
         </Suspense>
-      ) : null}
-      {showSatellite ? (
+      </ModelErrorBoundary>
+      <ModelErrorBoundary>
         <Suspense fallback={null}>
           <Satellite
             destination={OBJECTS_BY_ID.satellite}
@@ -128,8 +96,8 @@ export default function SceneContent({
             worldPositionRef={satelliteWorldRef}
           />
         </Suspense>
-      ) : null}
-      {showMoon ? (
+      </ModelErrorBoundary>
+      <ModelErrorBoundary>
         <Suspense fallback={null}>
           <Moon
             destination={OBJECTS_BY_ID.moon}
@@ -139,8 +107,8 @@ export default function SceneContent({
             onSelect={onSelect}
           />
         </Suspense>
-      ) : null}
-      {showPortal ? (
+      </ModelErrorBoundary>
+      <ModelErrorBoundary>
         <Suspense fallback={null}>
           <Portal
             destination={OBJECTS_BY_ID.earth}
@@ -151,7 +119,7 @@ export default function SceneContent({
             zooming={portalZooming}
           />
         </Suspense>
-      ) : null}
+      </ModelErrorBoundary>
 
       <EffectComposer multisampling={0}>
         <Bloom

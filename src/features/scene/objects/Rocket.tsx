@@ -124,3 +124,5 @@ export default function Rocket({
     </Float>
   );
 }
+
+useGLTF.preload(ROCKET_URL);
