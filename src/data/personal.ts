@@ -2,7 +2,7 @@ export const personal = {
   name: "Kevin Zhang",
   tagline: "Computer Science @ University of Waterloo",
   about:
-    "I'm a Computer Science student at the University of Waterloo, passionate about creating innovative software solutions and building robust digital infrastructure. I'm currently seeking internship opportunities for Fall 2026.",
+    "I'm a Computer Science student at the University of Waterloo, passionate about creating innovative software solutions and building robust digital infrastructure. I'm currently seeking internship opportunities for Summer 2027.",
   longTermGoal:
     "My long-term goal is to develop smart software solutions that solve real-world problems and contribute to building the digital infrastructure of tomorrow.",
   athletics:
