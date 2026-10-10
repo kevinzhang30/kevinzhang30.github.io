@@ -10,6 +10,16 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "RiverRank.io",
+    description:
+      "A real-time multiplayer heads-up Texas Hold'em platform with Elo-based ranked matchmaking and server-authoritative game logic. Features single-elimination tournaments with live brackets, friend challenges, live spectating, and a tiered bot ladder for practice.",
+    technologies: ["Next.js", "React", "TypeScript", "Socket.IO", "Express", "Supabase", "PostgreSQL"],
+    githubUrl: "https://github.com/kevinzhang30/river-rank",
+    liveUrl: "https://riverrank.io",
+    featured: true,
+    category: "web",
+  },
+  {
     title: "ClinicMS",
     description:
       "A full stack healthcare management web application using Spring Boot, JWT, Maven, React, JavaScript, and Axios. Features comprehensive patient management, appointment scheduling, and healthcare provider workflows.",
