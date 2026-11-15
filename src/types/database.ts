@@ -54,6 +54,7 @@ export interface ProjectRow {
   technologies: string[];
   github_url: string;
   live_url: string | null;
+  demo_url: string | null;
   featured: boolean;
   category: "web" | "mobile" | "systems" | "other";
   sort_order: number;
@@ -80,6 +81,7 @@ export function mapProject(row: ProjectRow): Project {
     technologies: row.technologies,
     githubUrl: row.github_url,
     liveUrl: row.live_url ?? undefined,
+    demoUrl: row.demo_url ?? undefined,
     featured: row.featured,
     category: row.category,
   };
