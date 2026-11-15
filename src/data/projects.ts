@@ -21,6 +21,15 @@ export const projects: Project[] = [
     category: "web",
   },
   {
+    title: "Distributed Timing System",
+    description:
+      "A distributed swim meet timing system in Go where simulated lane timers broadcast splits over UDP multicast to a replicated three-node results cluster. Features NACK-based loss recovery, NTP-style clock synchronization, and a write-ahead log replicated over a custom length-prefixed TCP protocol with majority commit.",
+    technologies: ["Go", "UDP Multicast", "TCP", "Distributed Systems", "Replication", "Clock Sync"],
+    githubUrl: "https://github.com/kevinzhang30/distributed-timing-system",
+    featured: true,
+    category: "systems",
+  },
+  {
     title: "ClinicMS",
     description:
       "A full stack healthcare management web application using Spring Boot, JWT, Maven, React, JavaScript, and Axios. Features comprehensive patient management, appointment scheduling, and healthcare provider workflows.",
