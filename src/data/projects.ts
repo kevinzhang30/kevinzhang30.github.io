@@ -4,6 +4,7 @@ export interface Project {
   technologies: string[];
   githubUrl: string;
   liveUrl?: string;
+  demoUrl?: string;
   featured: boolean;
   category: "web" | "mobile" | "systems" | "other";
 }

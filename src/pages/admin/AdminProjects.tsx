@@ -8,6 +8,7 @@ const emptyForm: Omit<ProjectRow, "id"> = {
   technologies: [],
   github_url: "",
   live_url: null,
+  demo_url: null,
   featured: false,
   category: "web",
   sort_order: 0,
@@ -44,6 +45,7 @@ export default function AdminProjects() {
       technologies: row.technologies,
       github_url: row.github_url,
       live_url: row.live_url,
+      demo_url: row.demo_url,
       featured: row.featured,
       category: row.category,
       sort_order: row.sort_order,
@@ -231,6 +233,20 @@ export default function AdminProjects() {
                 value={form.live_url ?? ""}
                 onChange={(e) =>
                   setForm({ ...form, live_url: e.target.value || null })
+                }
+                className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-primary-300 focus:ring-2 focus:ring-primary-100"
+              />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                Demo video URL
+              </label>
+              <input
+                type="url"
+                placeholder="Optional"
+                value={form.demo_url ?? ""}
+                onChange={(e) =>
+                  setForm({ ...form, demo_url: e.target.value || null })
                 }
                 className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:border-primary-300 focus:ring-2 focus:ring-primary-100"
               />
