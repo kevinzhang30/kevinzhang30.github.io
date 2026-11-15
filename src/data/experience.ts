@@ -13,7 +13,7 @@ export const experiences: Experience[] = [
     company: "StackAdapt",
     role: "Software Engineering Intern - Developer Ecosystem (APIs) Team",
     startDate: "Jan 2026",
-    endDate: "Aug 2026",
+    endDate: "Dec 2026",
     description:
       "",
     technologies: ["Ruby on Rails", "GraphQL", "React"],
